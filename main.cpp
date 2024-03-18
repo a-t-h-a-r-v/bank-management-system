@@ -8,12 +8,10 @@ class bank_management_system{
 		string accountNumber;
 	public:
 		bank_management_system(double b,string n,string a):balance(b),accountHolderName(n),accountNumber(a){}
-
 		void deposit(double amount){
 			balance += amount;
 			cout<<"Deposited of rs "<<amount<<" successful."<<endl;
 		}
-
 		void withdraw(double amount){
 			if(amount <= balance){
 				balance -= amount;
@@ -22,18 +20,15 @@ class bank_management_system{
 				cout<<"Insufficient funds."<<endl;
 			}
 		}
-
 		void display(){
 			cout<<"Account Number : "<<accountNumber<<endl;
 			cout<<"Account Holder Name : "<<accountHolderName<<endl;
 			cout<<"Balance : rs "<<balance<<endl;
 		}
-
 		string getAccountNumber(){
 			return accountNumber;
 		}
 };
-
 class bank{
 	private:
 		vector<bank_management_system> accounts;
@@ -42,14 +37,12 @@ class bank{
 			accounts.push_back(account);
 			cout<<"Account added successfully."<<endl;
 		}
-
 		void displayAllAccounts(){
 			for(int i=0;i<accounts.size();i++){
 				accounts[i].display();
 				cout<<endl;
 			}
 		}
-
 		int withdraw(string a,int m){
 			for(int i=0;i<accounts.size();i++){
 				if(accounts[i].getAccountNumber()==a){
@@ -60,7 +53,6 @@ class bank{
 			cout<<"Account Number Not Found"<<endl;
 			return -1;
 		}
-
 		int deposit(string a,int m){
 			for(int i=0;i<accounts.size();i++){
 				if(accounts[i].getAccountNumber()==a){
@@ -72,7 +64,6 @@ class bank{
 			return -1;
 		}
 };
-
 int main(){
 	bank Bank;
 	int choice;
@@ -83,7 +74,6 @@ int main(){
 		cout<<"4.Withdraw"<<endl;
 		cout<<"5.Exit"<<endl;
 		cin>>choice;
-
 		switch(choice){
 			case 1:{string a,n;
 				double b;
@@ -98,11 +88,9 @@ int main(){
 				Bank.addAccount(newAccount);
 				break;
 				}
-			case 2:
-				Bank.displayAllAccounts();
+			case 2: Bank.displayAllAccounts();
 				break;
-			case 3:
-				{string a;
+			case 3: {string a;
 				double amount;
 				cout<<"Enter Account Number: ";
 				cin>>a;
@@ -111,20 +99,19 @@ int main(){
 				Bank.deposit(a,amount);
 				break;
 				}
-			case 4:
-				{string a;
+			case 4: {string a;
 				double amount;
 				cout<<"Enter Account Number: ";
 				cin>>a;
 				cout<<"Enter Withdraw Amount: (in rs)";
 				cin>>amount;
 				Bank.withdraw(a,amount);
-				break;
-				}
+				break;}
+			case 5:cout<<"Exiting ..."<<endl;
+			       break;
 			default:
 				cout<<"Invalid choice."<<endl;
 		}
 	}while(choice!=5);
 	return 0;
 }
-
